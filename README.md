@@ -103,15 +103,21 @@ If you don't provide a value for `DATE`, the code automatically predicts one day
 
 <!---
 ## 📚 Paper
-  
+
+-->
 ## 🎯 Citation 
 
 If you use CryptoMamba in a research paper, please cite our work as follows:
 
 ```
-
+@article{Sepehri2025CryptoMamba,
+      title={CryptoMamba: Leveraging State Space Models for Accurate Bitcoin Price Prediction}, 
+      author={Mohammad Shahab Sepehri and Asal Mehradfar and Mahdi Soltanolkotabi and Salman Avestimehr},
+      year={2025},
+      url={https://arxiv.org/abs/2501.01010}
+}
 ```
--->
+
 ## ❓ Where to Ask for Help
 
 <p align="justify" > 
