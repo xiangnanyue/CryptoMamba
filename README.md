@@ -23,7 +23,6 @@ CryptoMamba’s robust performance and generalizability make it a promising solu
     * [Evaluate Model](#evaluate-model)
     * [Predict Next Day Price](#predict-next-day-price)
   * [Results](#-results)
-  * [Paper](#-paper)
   * [Citation](#-citation)
   * [Where to Ask for Help](#-where-to-ask-for-help)
 
