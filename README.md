@@ -71,7 +71,9 @@ python scripts/simulate_trade.py --config CONFIG_NAME --ckpt_path PATH_TO_CHECKP
 Where `SPLIT_NAME` is `train`, `val`, or `test` and `TRADE_ALGORITHM is` `smart` or `vanilla`.
 
 ### Predict Next Day Price
+<p align="justify" > 
 We also have a script to predict the next day price and trade suggestions by providing the prices of its previous days. You have to create a `csv` file similar to [this](data/one_day_trade.csv) and use this command:
+</p>
 
 ```
 python scripts/one_day_pred.py --config CONFIG_NAME --ckpt_path PATH_TO_CHECKPOINT --date DATE
@@ -107,9 +109,9 @@ If you don't provide a value for `DATE`, the code automatically predicts one day
 -->
 ## 🎯 Citation 
 
-If you use CryptoMamba in a research paper, please cite our work as follows:
+If you use CryptoMamba in a research paper, please cite our [paper](https://arxiv.org/abs/2501.01010):
 
-```
+```bibtex
 @article{Sepehri2025CryptoMamba,
       title={CryptoMamba: Leveraging State Space Models for Accurate Bitcoin Price Prediction}, 
       author={Mohammad Shahab Sepehri and Asal Mehradfar and Mahdi Soltanolkotabi and Salman Avestimehr},
