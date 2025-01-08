@@ -19,6 +19,7 @@ CryptoMamba’s robust performance and generalizability make it a promising solu
 
   * [Requirements](#-requirements)
   * [Usage](#-usage)
+    * [Data](#data)
     * [Train New Model](#train-new-model)
     * [Evaluate Model](#evaluate-model)
     * [Predict Next Day Price](#predict-next-day-price)
@@ -39,6 +40,12 @@ If you have difficulties installing `mamba_ssm`, please follow the instructions 
 </p>
 
 ## 💡 Usage
+
+### Data
+
+<p align="justify" > 
+You can find the processed data that we use in <a href="./data/2018-17-09_2024-16-09_1440">here</a>. If you want to use another data configuration, you should change the configuration in <a href="./configs/data_configs/mode_1.yaml">the data config file</a>. Note that the <code>data_path</code> should point to the raw data file with similar format to <a href="./data/one_day_trade.csv">this</a>.
+</p>
 
 ### Train New Model
 To train a model, use the following: 
