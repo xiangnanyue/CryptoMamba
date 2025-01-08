@@ -182,8 +182,7 @@ if __name__ == "__main__":
     val_transform = DataTransform(is_train=False, use_volume=use_volume)
     test_transform = DataTransform(is_train=False, use_volume=use_volume)
 
-    ckpt_path = get_ckpt_path(args.config, args.ckpt_path)
-    model, normalize = load_model(config, ckpt_path)
+    model, normalize = load_model(config, args.ckpt_path)
     data_module = CMambaDataModule(data_config,
                                    train_transform=train_transform,
                                    val_transform=val_transform,
