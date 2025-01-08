@@ -27,7 +27,7 @@ class CMambaDataset(torch.utils.data.Dataset):
         print('{} data points loaded as {} split.'.format(len(self), split))
 
     def __len__(self):
-        return len(self.data) - self.window_size - 1
+        return max(0, len(self.data) - self.window_size - 1)
 
     def __getitem__(self, i: int):
         sample = self.data.iloc[i: i + self.window_size + 1]
@@ -49,18 +49,19 @@ class DataConverter:
     def process_data(self):
         data, start, stop = self.load_data()
         new_df = {}
-        for key in data.keys():
-            if key == 'Date':
-                continue
+        for key in ['Timestamp', 'High', 'Low', 'Open', 'Close', 'Volume']:
             new_df[key] = []
         for i in tqdm(range(start, stop - 3600, self.jumps)):
             high, low, open, close, vol = self.merge_data(data, i, self.jumps)
+            if high is None:
+                continue
             new_df.get('Timestamp').append(i)
             new_df.get('High').append(high)
             new_df.get('Low').append(low)
             new_df.get('Open').append(open)
             new_df.get('Close').append(close)
             new_df.get('Volume').append(vol)
+
         df = pd.DataFrame(new_df)
 
         return df
@@ -139,6 +140,8 @@ class DataConverter:
     def merge_data(data, start, jump):
         tmp = data[data['Timestamp'] >= start].reset_index(drop=True)
         tmp = tmp[tmp['Timestamp'] < start + jump].reset_index(drop=True)
+        if len(tmp) == 0:
+            return None, None, None, None, None
         _, high, low, open, close, _ = DataConverter.get_row_values(tmp.iloc[0])
         count = 1
         vol = 0
