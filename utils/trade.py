@@ -59,9 +59,18 @@ def trade(data, time_key, timstamps, targets, preds, balance=100, mode='smart_v2
     max_balance = balance  # 初始余额即为最高余额
     max_drawdown = 0  # 初始最大回撤为0
     daily_returns = []  # 用于计算日收益率
+    count_n = 0
+    success_n = 0
+    last_price = 0.0
+    last_pred = 0.0
 
     for ts, target, pred in zip(timstamps, targets, preds):
         today = data[data[time_key] == int(ts - 24 * 60 * 60)].iloc[0][y_key]
+        if (today > last_price and last_pred > last_price) or (today < last_price and last_pred < last_price):
+            success_n += 1
+        count_n += 1
+        last_price = today
+        last_pred = pred
         assert round(target, 2) == round(data[data[time_key] == int(ts)].iloc[0][y_key], 2)
         
         # 执行买卖操作
@@ -105,4 +114,4 @@ def trade(data, time_key, timstamps, targets, preds, balance=100, mode='smart_v2
         sharpe_ratio = 0  # 如果没有足够的数据，返回0
     
     # 返回最终余额、余额时间序列、最大回撤和 Sharpe Ratio
-    return balance, balance_in_time, max_drawdown, sharpe_ratio
+    return balance, balance_in_time, max_drawdown, sharpe_ratio, success_n / count_n
