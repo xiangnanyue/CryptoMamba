@@ -1,0 +1,7 @@
+.idea/
+LICENSE
+*/__pycache__
+*.csv
+logs
+checkpoints/bak
+data/
