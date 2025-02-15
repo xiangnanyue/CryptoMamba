@@ -215,12 +215,12 @@ if __name__ == '__main__':
             data[model.y_key] = data[model.y_key] * scale + shift
 
 
-        balance, balance_in_time = trade(data, time_key, timstamps, targets, preds, 
-                                         balance=args.balance, mode=args.trade_mode, 
-                                         risk=args.risk, y_key=model.y_key)
+        balance, balance_in_time, max_dd, sp = trade(data, time_key, timstamps, targets, preds,
+                                                 balance=args.balance, mode=args.trade_mode,
+                                                 risk=args.risk, y_key=model.y_key)
 
-
-        print(f'{conf} -- Final balance: {round(balance, 2)}')
+        print(f'{conf} -- Final balance: {round(balance, 2)}, '
+              f'Max Drawdown: {round(max_dd, 2)}, Sharp: {round(sp, 2)}')
 
         label = conf.replace("_nv", "").replace("_v", "")
         if label == 'cmamba':
