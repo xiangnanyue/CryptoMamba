@@ -1,3 +1,5 @@
+import numpy as np
+
 
 def buy_sell_smart(today, pred, balance, shares, risk=5):
     diff = pred * risk / 100
