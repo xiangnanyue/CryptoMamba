@@ -1,0 +1,8 @@
+jumps: 1440
+start_date: "2018-17-09"
+end_date: "2025-14-02"
+root: "./data"
+data_path: "./data/BTCUSDT.csv"
+train_interval: ["2018-17-09", "2023-17-09"]
+val_interval: ["2022-17-09", "2023-17-12"]
+test_interval: ["2024-01-01", "2025-14-02"]
