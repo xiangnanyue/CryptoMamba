@@ -2,6 +2,7 @@ import os, sys, pathlib
 sys.path.insert(0, os.path.dirname(pathlib.Path(__file__).parent.absolute()))
 
 import torch
+import pandas as pd
 import numpy as np
 import seaborn as sns
 from utils import io_tools
@@ -218,7 +219,7 @@ if __name__ == '__main__':
         balance, balance_in_time, max_dd, sp, s_rate = trade(data, time_key, timstamps, targets, preds,
                                                  balance=args.balance, mode=args.trade_mode,
                                                  risk=args.risk, y_key=model.y_key)
-
+        pred_df = pd.DataFrame.from_dict({'timstamps': timstamps, 'preds': preds, 'targets': targets})
         print(f'{conf} -- Final balance: {round(balance, 2)}, '
               f'Max Drawdown: {round(max_dd, 2)}, Sharp: {round(sp, 2)}, Success_Rate: {round(s_rate, 4)}')
 
@@ -266,3 +267,6 @@ if __name__ == '__main__':
     plt.xlabel('Date')
     plt.legend(loc='upper left')
     plt.savefig(plot_path, dpi=300, bbox_inches='tight')
+
+    pred_df.to_csv(f'{ROOT}/Results/{name}/{args.config}/pred_df.csv', header=True)
+
